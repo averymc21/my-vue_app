@@ -8,21 +8,19 @@
 export default {
   props: ['delay'],
 
-  data (){
+  data () {
     return {
       showBlock: false,
       timer: null,
       reactionTime: 0
     }
   },
-
   mounted() {
     setTimeout(() => {
       this.showBlock = true
       this.startTimer()
     }, this.delay)
   },
-
   methods: {
     // this function stores time data and run every 10 milisecs, and add 10 milisecs to reaction time
     startTimer() {
@@ -30,9 +28,10 @@ export default {
         this.reactionTime += 10
       }, 10)
     },
-    stopTimer(){
+    stopTimer() {
       clearInterval(this.timer)
-
+      //console.log(this.reactionTime)
+      this.$emit('end', this.reactionTime)
     }
   }
 
